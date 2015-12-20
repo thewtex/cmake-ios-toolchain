@@ -1,7 +1,13 @@
 language: objective-c
 before_install:
   - brew update
+install:
   - brew install ninja
+  - wget https://cmake.org/files/v3.4/cmake-3.4.1-Darwin-x86_64.tar.gz
+  - tar xvzf cmake-3.4.1-Darwin-x86_64.tar.gz
+  - mv cmake-*/CMake.app $HOME/
+  - export PATH="$HOME/CMake.app/Contents/bin:$PATH"
+  - which cmake
 script:
   - mkdir ../build
   - cd ../build
