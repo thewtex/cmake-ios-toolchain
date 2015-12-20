@@ -1,0 +1,12 @@
+language: objective-c
+before_install:
+  - brew update
+  - brew install ninja
+script:
+  - mkdir ../build
+  - cd ../build
+  - cmake ../cmake-ios-toolchain/test
+  - ctest -V
+  - rm -rf *
+  - cmake -G Ninja ../cmake-ios-toolchain/test
+  - ctest -V
