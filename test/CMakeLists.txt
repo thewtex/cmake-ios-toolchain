@@ -20,6 +20,7 @@ function(ios_toolchain_test test_name toolchain_file)
     PROPERTIES DEPENDS ${id_test_name}_Clean)
   add_test(NAME ${id_test_name}_Configure
     COMMAND ${CMAKE_COMMAND}
+      -G${CMAKE_GENERATOR}
       -DCMAKE_TOOLCHAIN_FILE=${toolchain_file}
       ${PROJECT_SOURCE_DIR}/${test_name}
     WORKING_DIRECTORY ${test_dir}
