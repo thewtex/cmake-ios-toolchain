@@ -23,9 +23,15 @@ function(ios_toolchain_test test_name toolchain_file)
       -DCMAKE_TOOLCHAIN_FILE=${toolchain_file}
       ${PROJECT_SOURCE_DIR}/${test_name}
     WORKING_DIRECTORY ${test_dir}
-      )
+    )
   set_tests_properties(${id_test_name}_Configure
     PROPERTIES DEPENDS ${id_test_name}_MakeDirectory)
+  add_test(NAME ${id_test_name}_Build
+    COMMAND ${CMAKE_COMMAND} --build . --clean-first
+    WORKING_DIRECTORY ${test_dir}
+    )
+  set_tests_properties(${id_test_name}_Build
+    PROPERTIES DEPENDS ${id_test_name}_Configure)
 endfunction()
 
 set(toolchain_file ${PROJECT_SOURCE_DIR}/../ios.simulator.toolchain.cmake)
